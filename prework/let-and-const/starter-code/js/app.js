@@ -1,6 +1,7 @@
 'use strict';
 
 const names = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'];
+
 const leftImage = document.getElementById('left');
 const centerImage = document.getElementById('center');
 const rightImage = document.getElementById('right');
@@ -17,7 +18,7 @@ const votes = [];
 
 function Product(name) {
   this.name = name;
-  this.path = 'img/' `${name} '.jpg'`; 
+  this.path = 'img/' + name + '.jpg';
   this.votes = 0;
   this.views = 0;
   allProducts.push(this);
@@ -29,14 +30,14 @@ function makeRandom() {
 
 function displayPics(){
   while(viewed.length < 6){
-    const rando = makeRandom();
+    var rando = makeRandom();
     while(!viewed.includes(rando)){
       viewed.push(rando);
-
     }
   }
+  console.log(rando);
   // TODO: In a sentence or two, explain why the previous line of code threw an error when we changed the variable declaration from `var to `let`.
-  // becease  the let its block scope and it will be defined inside the while and it will not see it out side the block...
+  // PUT YOUR RESPONSE IN THIS COMMENT
   console.log(viewed);
 
   for (let i = 0; i < 3; i++){
@@ -61,7 +62,7 @@ function handleClick(event) {
   for(let i = 0; i < names.length; i++){
     if(event.target.id === allProducts[i].name) {
       allProducts[i].votes += 1;
-      console.log(`${event.target.id}  has ${allProducts[i].votes} votes in ${allProducts[i].views} views`);
+      console.log(event.target.id + ' has ' + allProducts[i].votes + ' votes in ' + allProducts[i].views + ' views');
     }
   }
   localStorage.busmall = JSON.stringify(allProducts);
@@ -72,7 +73,7 @@ function handleClick(event) {
 function showList() {
   for(let i = 0; i < allProducts.length; i++) {
     const liEl = document.createElement('li');
-    liEl.textContent = `${allProducts[i].name} has ${allProducts[i].votes} votes in   ${allProducts[i].views}  views`;
+    liEl.textContent = allProducts[i].name + ' has ' + allProducts[i].votes + ' votes in ' + allProducts[i].views + ' views';
     list.appendChild(liEl);
   }
 }
